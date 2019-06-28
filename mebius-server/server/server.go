@@ -2,7 +2,7 @@ package server
 
 import (
     "github.com/gin-gonic/gin"
-
+    "github.com/gin-contrib/cors"
     "github.com/PIETEP/mebius-server/controller"
 )
 
@@ -14,7 +14,7 @@ func Init() {
 
 func router() *gin.Engine {
     r := gin.Default()
-
+    r.Use(cors.Default())
     u := r.Group("/users")
     {
         ctrl := user.Controller{}
