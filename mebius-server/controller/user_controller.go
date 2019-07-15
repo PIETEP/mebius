@@ -3,9 +3,8 @@ package controller
 import (
 	"fmt"
 
+	"github.com/PIETEP/mebius/mebius-server/service"
 	"github.com/gin-gonic/gin"
-
-	user "github.com/PIETEP/mebius/mebius-server/service"
 )
 
 // Controller is user controlller
@@ -13,7 +12,7 @@ type UserController struct{}
 
 // Index action: GET /users
 func (uc UserController) Index(c *gin.Context) {
-	var s user.Service
+	var s service.UserService
 	p, err := s.GetAll()
 
 	if err != nil {
@@ -26,7 +25,7 @@ func (uc UserController) Index(c *gin.Context) {
 
 // Create action: POST /users
 func (uc UserController) Create(c *gin.Context) {
-	var s user.Service
+	var s service.UserService
 	p, err := s.CreateModel(c)
 
 	if err != nil {
@@ -40,7 +39,7 @@ func (uc UserController) Create(c *gin.Context) {
 // Show action: GET /users/:id
 func (uc UserController) Show(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var s user.Service
+	var s service.UserService
 	p, err := s.GetByID(id)
 
 	if err != nil {
@@ -54,7 +53,7 @@ func (uc UserController) Show(c *gin.Context) {
 // Update action: PUT /users/:id
 func (uc UserController) Update(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var s user.Service
+	var s service.UserService
 	p, err := s.UpdateByID(id, c)
 
 	if err != nil {
@@ -68,7 +67,7 @@ func (uc UserController) Update(c *gin.Context) {
 // Delete action: DELETE /users/:id
 func (uc UserController) Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var s user.Service
+	var s service.UserService
 
 	if err := s.DeleteByID(id); err != nil {
 		c.AbortWithStatus(403)
