@@ -1,7 +1,7 @@
 package server
 
 import (
-	user "github.com/PIETEP/mebius/mebius-server/controller"
+	"github.com/PIETEP/mebius/mebius-server/controller"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -17,12 +17,17 @@ func router() *gin.Engine {
 	r.Use(cors.Default())
 	u := r.Group("/users")
 	{
-		ctrl := user.Controller{}
+		ctrl := controller.UserController{}
 		u.GET("", ctrl.Index)
 		u.GET("/:id", ctrl.Show)
 		u.POST("", ctrl.Create)
 		u.PUT("/:id", ctrl.Update)
 		u.DELETE("/:id", ctrl.Delete)
+	}
+
+	// c := r.Group("/cards")
+	{
+		// ctrl := card.Controller{}
 	}
 
 	return r
