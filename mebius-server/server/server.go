@@ -37,5 +37,15 @@ func router() *gin.Engine {
 		c.DELETE("/:id", ctrl.Delete)
 	}
 
+	d := api.Group("/decks")
+	{
+		ctrl := controller.DeckController{}
+		d.GET("", ctrl.Index)
+		d.POST("", ctrl.Create)
+		d.GET("/:id", ctrl.Show)
+		d.PUT("/:id", ctrl.Update)
+		d.DELETE("/:id", ctrl.Delete)
+	}
+
 	return r
 }
