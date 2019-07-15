@@ -37,9 +37,30 @@ func init() {
 	}
 }
 
+// TODO: Implement the contents
 func (cc CardController) Index(c *gin.Context) {
 	r := UserIndexResponse{}
 	r.Cards = []entity.Card{card0, card1}
 
 	c.JSON(200, r)
+}
+
+// TODO: Implement the contents
+func (cc CardController) Create(c *gin.Context) {
+	c.JSON(200, card0)
+}
+
+// TODO: Implement the contents
+func (cc CardController) Show(c *gin.Context) {
+	c.JSON(200, card0)
+}
+
+// TODO: Implement the contents
+func (cc CardController) Update(c *gin.Context) {
+	c.JSON(200, card0)
+}
+
+// TODO: Implement the contents
+func (cc CardController) Delete(c *gin.Context) {
+	c.JSON(200, card0)
 }
