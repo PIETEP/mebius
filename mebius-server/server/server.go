@@ -25,9 +25,12 @@ func router() *gin.Engine {
 		u.DELETE("/:id", ctrl.Delete)
 	}
 
-	// c := r.Group("/cards")
+	api := r.Group("/api/v1")
+
+	c := api.Group("/cards")
 	{
-		// ctrl := card.Controller{}
+		ctrl := controller.CardController{}
+		c.GET("", ctrl.Index)
 	}
 
 	return r
