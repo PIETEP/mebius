@@ -1,6 +1,9 @@
 all: run
 
-init: docker/build docker/up
+init: docker/build docker/up deps
+
+deps:
+	dep ensure
 
 up: docker/up
 
