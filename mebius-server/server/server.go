@@ -47,5 +47,11 @@ func router() *gin.Engine {
 		d.DELETE("/:id", ctrl.Delete)
 	}
 
+	s := api.Group("/search")
+	{
+		ctrl := controller.SearchController{}
+		s.GET("", ctrl.Index)
+	}
+
 	return r
 }
