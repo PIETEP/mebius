@@ -53,5 +53,11 @@ func router() *gin.Engine {
 		s.GET("", ctrl.Index)
 	}
 
+	t := api.Group("/suggest")
+	{
+		ctrl := controller.SuggestController{}
+		t.GET("", ctrl.Index)
+	}
+
 	return r
 }
