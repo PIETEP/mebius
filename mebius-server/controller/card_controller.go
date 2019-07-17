@@ -1,7 +1,10 @@
 package controller
 
 import (
+	"fmt"
+
 	"github.com/PIETEP/mebius/mebius-server/entity"
+	"github.com/PIETEP/mebius/mebius-server/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -39,15 +42,29 @@ func init() {
 
 // TODO: Implement the contents
 func (cc CardController) Index(c *gin.Context) {
-	r := UserIndexResponse{}
-	r.Cards = []entity.Card{card0, card1}
+	var s service.CardService
+	cards, err := s.GetAll()
 
-	c.JSON(200, r)
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, cards)
 }
 
 // TODO: Implement the contents
 func (cc CardController) Create(c *gin.Context) {
-	c.JSON(200, card0)
+	var s service.CardService
+	card, err := s.CreateModel(c)
+	if err != nil {
+		c.AbortWithStatus(400)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(201, card)
 }
 
 // TODO: Implement the contents
