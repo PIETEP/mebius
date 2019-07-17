@@ -43,8 +43,8 @@ func init() {
 // TODO: Implement the contents
 func (cc CardController) Index(c *gin.Context) {
 	var s service.CardService
-	cards, err := s.GetAll()
 
+	cards, err := s.GetAll()
 	if err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
@@ -57,6 +57,7 @@ func (cc CardController) Index(c *gin.Context) {
 // TODO: Implement the contents
 func (cc CardController) Create(c *gin.Context) {
 	var s service.CardService
+
 	card, err := s.CreateModel(c)
 	if err != nil {
 		c.AbortWithStatus(400)
@@ -69,7 +70,17 @@ func (cc CardController) Create(c *gin.Context) {
 
 // TODO: Implement the contents
 func (cc CardController) Show(c *gin.Context) {
-	c.JSON(200, card0)
+	var s service.CardService
+
+	id := c.Params.ByName("id")
+	card, err := s.GetByID(id)
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, card)
 }
 
 // TODO: Implement the contents

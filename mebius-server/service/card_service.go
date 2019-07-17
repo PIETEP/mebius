@@ -35,3 +35,14 @@ func (cs CardService) CreateModel(c *gin.Context) (*Card, error) {
 
 	return &card, nil
 }
+
+func (cs CardService) GetByID(id string) (*Card, error) {
+	db := db.GetDB()
+	var card Card
+
+	if err := db.Where("id = ?", id).First(&card).Error; err != nil {
+		return nil, err
+	}
+
+	return &card, nil
+}
