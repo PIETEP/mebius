@@ -54,7 +54,7 @@ func init() {
 }
 
 // TODO: Implement the contents
-func (cc DeckController) Index(c *gin.Context) {
+func (dc DeckController) Index(c *gin.Context) {
 	r := DeckIndexResponse{
 		Decks: []entity.Deck{deck0, deck1},
 	}
@@ -63,21 +63,21 @@ func (cc DeckController) Index(c *gin.Context) {
 }
 
 // TODO: Implement the contents
-func (cc DeckController) Create(c *gin.Context) {
+func (dc DeckController) Create(c *gin.Context) {
 	c.JSON(200, deck0)
 }
 
 // TODO: Implement the contents
-func (cc DeckController) Show(c *gin.Context) {
+func (dc DeckController) Show(c *gin.Context) {
 	c.JSON(200, deck0)
 }
 
 // TODO: Implement the contents
-func (cc DeckController) Update(c *gin.Context) {
+func (dc DeckController) Update(c *gin.Context) {
 	c.JSON(200, deck0)
 }
 
 // TODO: Implement the contents
-func (cc DeckController) Delete(c *gin.Context) {
+func (dc DeckController) Delete(c *gin.Context) {
 	c.JSON(200, deck0)
 }
