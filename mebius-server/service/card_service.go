@@ -63,3 +63,14 @@ func (cs CardService) UpdateByID(id string, c *gin.Context) (*Card, error) {
 
 	return &card, nil
 }
+
+func (cs CardService) DeleteByID(id string) error {
+	db := db.GetDB()
+	var card Card
+
+	if err := db.Where("id = ?", id).First(&card).Delete(&card).Error; err != nil {
+		return err
+	}
+
+	return nil
+}

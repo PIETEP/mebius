@@ -101,5 +101,16 @@ func (cc CardController) Update(c *gin.Context) {
 
 // TODO: Implement the contents
 func (cc CardController) Delete(c *gin.Context) {
-	c.JSON(200, card0)
+	var s service.CardService
+
+	id := c.Params.ByName("id")
+	err := s.DeleteByID(id)
+
+	if err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(204, gin.H{"id #" + id: "deleted"})
 }
