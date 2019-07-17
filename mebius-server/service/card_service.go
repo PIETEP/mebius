@@ -46,3 +46,20 @@ func (cs CardService) GetByID(id string) (*Card, error) {
 
 	return &card, nil
 }
+
+func (cs CardService) UpdateByID(id string, c *gin.Context) (*Card, error) {
+	db := db.GetDB()
+	var card Card
+
+	if err := db.Where("id = ?", id).First(&card).Error; err != nil {
+		return nil, err
+	}
+
+	if err := c.BindJSON(&card); err != nil {
+		return nil, err
+	}
+
+	db.Save(&card)
+
+	return &card, nil
+}

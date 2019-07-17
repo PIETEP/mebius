@@ -85,7 +85,18 @@ func (cc CardController) Show(c *gin.Context) {
 
 // TODO: Implement the contents
 func (cc CardController) Update(c *gin.Context) {
-	c.JSON(200, card0)
+	var s service.CardService
+
+	id := c.Params.ByName("id")
+	card, err := s.UpdateByID(id, c)
+
+	if err != nil {
+		c.AbortWithStatus(400)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, card)
 }
 
 // TODO: Implement the contents
