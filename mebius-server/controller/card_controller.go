@@ -25,7 +25,11 @@ func (cc CardController) Index(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, cards)
+	r := UserIndexResponse{
+		Cards: cards,
+	}
+
+	c.JSON(200, r)
 }
 
 // TODO: Implement the contents

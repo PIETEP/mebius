@@ -8,11 +8,9 @@ import (
 
 type CardService struct{}
 
-type Card entity.Card
-
-func (cs CardService) GetAll() ([]Card, error) {
+func (cs CardService) GetAll() ([]entity.Card, error) {
 	db := db.GetDB()
-	var c []Card
+	var c []entity.Card
 
 	if err := db.Find(&c).Error; err != nil {
 		return nil, err
@@ -21,9 +19,9 @@ func (cs CardService) GetAll() ([]Card, error) {
 	return c, nil
 }
 
-func (cs CardService) CreateModel(c *gin.Context) (*Card, error) {
+func (cs CardService) CreateModel(c *gin.Context) (*entity.Card, error) {
 	db := db.GetDB()
-	var card Card
+	var card entity.Card
 
 	if err := c.BindJSON(&card); err != nil {
 		return nil, err
@@ -36,9 +34,9 @@ func (cs CardService) CreateModel(c *gin.Context) (*Card, error) {
 	return &card, nil
 }
 
-func (cs CardService) GetByID(id string) (*Card, error) {
+func (cs CardService) GetByID(id string) (*entity.Card, error) {
 	db := db.GetDB()
-	var card Card
+	var card entity.Card
 
 	if err := db.Where("id = ?", id).First(&card).Error; err != nil {
 		return nil, err
@@ -47,9 +45,9 @@ func (cs CardService) GetByID(id string) (*Card, error) {
 	return &card, nil
 }
 
-func (cs CardService) UpdateByID(id string, c *gin.Context) (*Card, error) {
+func (cs CardService) UpdateByID(id string, c *gin.Context) (*entity.Card, error) {
 	db := db.GetDB()
-	var card Card
+	var card entity.Card
 
 	if err := db.Where("id = ?", id).First(&card).Error; err != nil {
 		return nil, err
@@ -66,7 +64,7 @@ func (cs CardService) UpdateByID(id string, c *gin.Context) (*Card, error) {
 
 func (cs CardService) DeleteByID(id string) error {
 	db := db.GetDB()
-	var card Card
+	var card entity.Card
 
 	if err := db.Where("id = ?", id).First(&card).Delete(&card).Error; err != nil {
 		return err
