@@ -121,5 +121,16 @@ func (dc DeckController) Update(c *gin.Context) {
 
 // TODO: Implement the contents
 func (dc DeckController) Delete(c *gin.Context) {
-	c.JSON(200, deck0)
+	var s service.DeckService
+
+	id := c.Params.ByName("id")
+	err := s.DeleteByID(id)
+
+	if err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(204, gin.H{"id #" + id: "deleted"})
 }

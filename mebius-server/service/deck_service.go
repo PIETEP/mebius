@@ -61,3 +61,14 @@ func (ds DeckService) UpdateByID(id string, c *gin.Context) (*entity.Deck, error
 
 	return &deck, nil
 }
+
+func (ds DeckService) DeleteByID(id string) error {
+	db := db.GetDB()
+	var deck entity.Deck
+
+	if err := db.Where("id = ?", id).First(&deck).Delete(&deck).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
