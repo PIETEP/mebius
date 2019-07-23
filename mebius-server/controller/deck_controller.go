@@ -1,7 +1,10 @@
 package controller
 
 import (
+	"fmt"
+
 	"github.com/PIETEP/mebius/mebius-server/entity"
+	"github.com/PIETEP/mebius/mebius-server/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -55,8 +58,17 @@ func init() {
 
 // TODO: Implement the contents
 func (dc DeckController) Index(c *gin.Context) {
+	var s service.DeckService
+
+	decks, err := s.GetAll()
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+		return
+	}
+
 	r := DeckIndexResponse{
-		Decks: []entity.Deck{deck0, deck1},
+		Decks: decks,
 	}
 
 	c.JSON(200, r)

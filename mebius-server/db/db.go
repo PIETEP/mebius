@@ -27,4 +27,5 @@ func GetDB() *gorm.DB {
 func autoMigration() {
 	db.AutoMigrate(&entity.User{})
 	db.AutoMigrate(&entity.Card{})
+	db.AutoMigrate(&entity.Deck{})
 }
