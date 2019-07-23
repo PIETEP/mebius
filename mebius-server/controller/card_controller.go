@@ -14,7 +14,6 @@ type UserIndexResponse struct {
 	Cards []entity.Card `json:"cards"`
 }
 
-// TODO: Implement the contents
 func (cc CardController) Index(c *gin.Context) {
 	var s service.CardService
 
@@ -32,7 +31,6 @@ func (cc CardController) Index(c *gin.Context) {
 	c.JSON(200, r)
 }
 
-// TODO: Implement the contents
 func (cc CardController) Create(c *gin.Context) {
 	var s service.CardService
 
@@ -46,7 +44,6 @@ func (cc CardController) Create(c *gin.Context) {
 	c.JSON(201, card)
 }
 
-// TODO: Implement the contents
 func (cc CardController) Show(c *gin.Context) {
 	var s service.CardService
 
@@ -61,7 +58,6 @@ func (cc CardController) Show(c *gin.Context) {
 	c.JSON(200, card)
 }
 
-// TODO: Implement the contents
 func (cc CardController) Update(c *gin.Context) {
 	var s service.CardService
 
@@ -77,7 +73,6 @@ func (cc CardController) Update(c *gin.Context) {
 	c.JSON(200, card)
 }
 
-// TODO: Implement the contents
 func (cc CardController) Delete(c *gin.Context) {
 	var s service.CardService
 
