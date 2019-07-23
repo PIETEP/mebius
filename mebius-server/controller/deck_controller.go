@@ -41,7 +41,7 @@ func (dc DeckController) Create(c *gin.Context) {
 		return
 	}
 
-	c.JSON(200, deck)
+	c.JSON(201, deck)
 }
 
 func (dc DeckController) Show(c *gin.Context) {
