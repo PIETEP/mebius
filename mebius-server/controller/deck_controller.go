@@ -76,7 +76,16 @@ func (dc DeckController) Index(c *gin.Context) {
 
 // TODO: Implement the contents
 func (dc DeckController) Create(c *gin.Context) {
-	c.JSON(200, deck0)
+	var s service.DeckService
+
+	deck, err := s.CreateModel(c)
+	if err != nil {
+		c.AbortWithStatus(400)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, deck)
 }
 
 // TODO: Implement the contents
