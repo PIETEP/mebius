@@ -10,7 +10,7 @@ import (
 
 type CardController struct{}
 
-type UserIndexResponse struct {
+type CardIndexResponse struct {
 	Cards []entity.Card `json:"cards"`
 }
 
@@ -24,7 +24,7 @@ func (cc CardController) Index(c *gin.Context) {
 		return
 	}
 
-	r := UserIndexResponse{
+	r := CardIndexResponse{
 		Cards: cards,
 	}
 
