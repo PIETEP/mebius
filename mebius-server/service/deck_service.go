@@ -33,3 +33,14 @@ func (ds DeckService) CreateModel(c *gin.Context) (*entity.Deck, error) {
 
 	return &deck, nil
 }
+
+func (ds DeckService) GetByID(id string) (*entity.Deck, error) {
+	db := db.GetDB()
+	var deck entity.Deck
+
+	if err := db.Where("id = ?", id).First(&deck).Error; err != nil {
+		return nil, err
+	}
+
+	return &deck, nil
+}

@@ -90,7 +90,17 @@ func (dc DeckController) Create(c *gin.Context) {
 
 // TODO: Implement the contents
 func (dc DeckController) Show(c *gin.Context) {
-	c.JSON(200, deck0)
+	var s service.DeckService
+
+	id := c.Params.ByName("id")
+	deck, err := s.GetByID(id)
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, deck)
 }
 
 // TODO: Implement the contents
