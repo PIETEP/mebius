@@ -44,3 +44,20 @@ func (ds DeckService) GetByID(id string) (*entity.Deck, error) {
 
 	return &deck, nil
 }
+
+func (ds DeckService) UpdateByID(id string, c *gin.Context) (*entity.Deck, error) {
+	db := db.GetDB()
+	var deck entity.Deck
+
+	if err := db.Where("id = ?", id).First(&deck).Error; err != nil {
+		return nil, err
+	}
+
+	if err := c.BindJSON(&deck); err != nil {
+		return nil, err
+	}
+
+	db.Save(&deck)
+
+	return &deck, nil
+}

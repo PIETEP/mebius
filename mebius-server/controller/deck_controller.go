@@ -105,7 +105,18 @@ func (dc DeckController) Show(c *gin.Context) {
 
 // TODO: Implement the contents
 func (dc DeckController) Update(c *gin.Context) {
-	c.JSON(200, deck0)
+	var s service.DeckService
+
+	id := c.Params.ByName("id")
+	deck, err := s.UpdateByID(id, c)
+
+	if err != nil {
+		c.AbortWithStatus(400)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(200, deck)
 }
 
 // TODO: Implement the contents
